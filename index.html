@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="La Parrilla del Barrio - Deliciosos tacos, tortas, pizzas y más en Kanasín. Envíos a domicilio. ¡Pide ya!">
+    <meta name="keywords" content="tacos, parrilla, Kanasín, comida mexicana, domicilio, castacán">
+    <title>🔥 La Parrilla del Barrio</title>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: #0a0505;
+            color: #fdf2e9;
+            min-height: 100vh;
+            padding-bottom: 80px;
+            overflow-x: hidden;
+        }
+        .fire-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(255, 69, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 140, 0, 0.12) 0%, transparent 40%),
+                radial-gradient(ellipse at 50% 100%, rgba(200, 50, 0, 0.20) 0%, transparent 60%),
+                linear-gradient(180deg, #0a0505 0%, #1a0808 40%, #0d0505 100%);
+        }
+        .fire-particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(255, 150, 50, 0.3), transparent 70%);
+            animation: rise 6s ease-in infinite;
+        }
+        .fire-particle:nth-child(1) { left: 10%; width: 60px; height: 60px; animation-delay: 0s; }
+        .fire-particle:nth-child(2) { left: 30%; width: 40px; height: 40px; animation-delay: 2s; }
+        .fire-particle:nth-child(3) { left: 50%; width: 80px; height: 80px; animation-delay: 4s; }
+        .fire-particle:nth-child(4) { left: 70%; width: 50px; height: 50px; animation-delay: 1s; }
+        .fire-particle:nth-child(5) { left: 90%; width: 70px; height: 70px; animation-delay: 3s; }
+        @keyframes rise {
+            0% { bottom: -50px; opacity: 0; transform: scale(0.5) translateX(0); }
+            10% { opacity: 1; }
+            90% { opacity: 0.8; }
+            100% { bottom: 110%; opacity: 0; transform: scale(1.2) translateX(30px); }
+        }
+        header {
+            background: linear-gradient(180deg, rgba(10, 5, 5, 0.95) 0%, rgba(20, 8, 8, 0.9) 100%);
+            padding: 16px;
+            border-bottom: 3px solid #e74c3c;
+            box-shadow: 0 4px 40px rgba(231, 76, 60, 0.15);
+            position: relative;
+            z-index: 10;
+        }
+        header .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .logo-container {
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+        }
+        .logo-container .logo-name {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #e74c3c;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(231, 76, 60, 0.3);
+        }
+        .logo-container .logo-sub {
+            font-size: 0.85rem;
+            color: #f39c12;
+            letter-spacing: 5px;
+            font-weight: 300;
+        }
+        .logo-container .logo-tagline {
+            font-size: 0.65rem;
+            color: #888;
+            background: rgba(255,255,255,0.05);
+            padding: 2px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 2px;
+            letter-spacing: 2px;
+        }
+        .header-actions {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header-phone {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.06);
+            padding: 6px 12px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .header-phone:hover {
+            background: #e74c3c;
+            transform: scale(1.05);
+        }
+        .header-phone .phone-mobile { display: none; }
+        .header-whatsapp {
+            background: #25d366;
+            border-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+            border: 1px solid #25d366;
+        }
+        .header-whatsapp:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        .header-whatsapp .whatsapp-mobile { display: none; }
+        @media (max-width: 600px) {
+            .header-phone .phone-text { display: none; }
+            .header-phone .phone-mobile { display: inline; }
+            .header-phone { padding: 6px 10px; font-size: 0.65rem; }
+            .header-whatsapp .whatsapp-text { display: none; }
+            .header-whatsapp .whatsapp-mobile { display: inline; }
+            .header-whatsapp { padding: 6px 10px; font-size: 0.65rem; }
+            .logo-container .logo-name { font-size: 1.3rem; letter-spacing: 2px; }
+            .logo-container .logo-sub { font-size: 0.7rem; letter-spacing: 3px; }
+            .header-actions { gap: 4px; }
+        }
+        .night-banner {
+            background: linear-gradient(135deg, rgba(44, 26, 26, 0.9), rgba(74, 42, 42, 0.9));
+            padding: 12px 16px;
+            margin: 10px 12px 14px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px;
+            border-left: 5px solid #f39c12;
+            backdrop-filter: blur(10px);
+        }
+        .night-banner .night-icon {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .night-banner .night-icon i {
+            font-size: 1.4rem;
+            color: #f39c12;
+        }
+        .night-banner .night-info {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            font-size: 0.7rem;
+        }
+        .night-banner .night-info span {
+            background: rgba(255,255,255,0.06);
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .night-banner .night-info .hours-highlight {
+            background: #e74c3c;
+            color: white;
+            font-weight: 700;
+        }
+        .night-banner .night-info .morning-hours {
+            background: #f39c12;
+            color: #0a0505;
+            font-weight: 700;
+        }
+        .share-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 14px 12px;
+        }
+        .share-card {
+            background: rgba(26, 15, 15, 0.85);
+            border-radius: 14px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        .share-card:hover {
+            border-color: #e74c3c;
+            transform: translateY(-3px);
+        }
+        .share-card h3 {
+            color: #f39c12;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .share-card .qr-box {
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            display: inline-block;
+            border: 2px solid #e74c3c;
+            box-shadow: 0 0 30px rgba(231, 76, 60, 0.15);
+        }
+        .share-card .qr-box .qr-text {
+            font-size: 2.5rem;
+            display: block;
+        }
+        .share-card .qr-box .qr-url {
+            color: #1a1a2e;
+            font-size: 0.6rem;
+            font-weight: 600;
+            word-break: break-all;
+            max-width: 150px;
+        }
+        .share-card .share-text {
+            color: #888;
+            font-size: 0.7rem;
+            margin-top: 6px;
+        }
+        .share-card .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .share-card .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+        }
+        .share-card .social-icons a:hover {
+            transform: scale(1.05);
+        }
+        .share-card .social-icons .ig { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .share-card .social-icons .fb { background: #1877f2; }
+        .share-card .social-icons .tt { background: linear-gradient(135deg, #000000, #25f4ee); }
+        .share-card .social-icons .wa { background: #25d366; }
+        @media (max-width: 600px) {
+            .share-section { grid-template-columns: 1fr; }
+        }
+        .presentation {
+            background: rgba(26, 15, 15, 0.85);
+            padding: 16px 20px;
+            border-radius: 14px;
+            margin: 14px 12px;
+            border: 1px solid rgba(255,69,0,0.15);
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+        .presentation p {
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .presentation .highlight {
+            color: #f39c12;
+            font-weight: 700;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-align: center;
+            margin: 24px 0 16px;
+            color: #f39c12;
+            letter-spacing: 3px;
+            text-shadow: 0 0 40px rgba(243, 156, 18, 0.15);
+        }
+        .section-title::after {
+            content: '🔥';
+            display: block;
+            font-size: 1.8rem;
+            margin-top: 2px;
+        }
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #e74c3c;
+            margin: 16px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 2px solid rgba(231, 76, 60, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .category-title i {
+            color: #f39c12;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+        .menu-item {
+            background: rgba(26, 15, 15, 0.85);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.04);
+            backdrop-filter: blur(5px);
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: #e74c3c;
+            box-shadow: 0 8px 35px rgba(231, 76, 60, 0.15);
+        }
+        .menu-item .item-img {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            background: #1a0a0a;
+        }
+        .menu-item .item-body {
+            padding: 12px 14px 14px;
+        }
+        .menu-item .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+        }
+        .menu-item .item-header h3 {
+            font-size: 0.95rem;
+            color: #fdf2e9;
+            font-weight: 600;
+        }
+        .menu-item .item-header .price {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #f39c12;
+            white-space: nowrap;
+            text-shadow: 0 0 20px rgba(243, 156, 18, 0.15);
+        }
+        .menu-item .item-desc {
+            font-size: 0.7rem;
+            color: #aaa;
+            margin-top: 4px;
+        }
+        .menu-item .morning-tag {
+            display: inline-block;
+            background: #f39c12;
+            color: #0a0505;
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+        .payments-section {
+            background: rgba(26, 15, 15, 0.8);
+            padding: 16px;
+            border-radius: 14px;
+            margin: 16px 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+        .payments-section h3 {
+            color: #f39c12;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .payments-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .payment-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            min-width: 140px;
+            justify-content: center;
+        }
+        .payment-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        }
+        .payment-btn i {
+            font-size: 1.2rem;
+        }
+        .btn-mercadolibre {
+            background: linear-gradient(135deg, #ffe600, #f5a623);
+            color: #1a1a2e;
+        }
+        .btn-clip {
+            background: #0a2540;
+            border: 2px solid #4285f4;
+        }
+        .btn-clip i {
+            color: #4285f4;
+        }
+        .delivery-zones {
+            background: rgba(26, 15, 15, 0.8);
+            padding: 14px 16px;
+            border-radius: 14px;
+            margin: 14px 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
+        }
+        .delivery-zones h3 {
+            color: #f39c12;
+            font-size: 1rem;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .delivery-zones .zones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 6px;
+            text-align: center;
+        }
+        .delivery-zones .zone-item {
+            background: rgba(255,255,255,0.04);
+            padding: 6px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        .delivery-zones .zone-item:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: #e74c3c;
+            transform: scale(1.03);
+        }
+        .delivery-zones .zone-item strong {
+            color: #fdf2e9;
+            display: block;
+            font-size: 0.8rem;
+        }
+        .delivery-zones .zone-note {
+            text-align: center;
+            font-size: 0.7rem;
+            color: #888;
+            margin-top: 8px;
+        }
+        .delivery-zones .zone-note strong {
+            color: #f39c12;
+        }
+        .order-section {
+            background: linear-gradient(135deg, rgba(44, 26, 26, 0.9), rgba(74, 42, 42, 0.9));
+            padding: 24px 16px;
+            border-radius: 14px;
+            margin: 20px 12px;
+            text-align: center;
+            border: 2px solid #e74c3c;
+            box-shadow: 0 4px 40px rgba(231, 76, 60, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .order-section h2 {
+            font-size: 1.6rem;
+            color: #e74c3c;
+            margin-bottom: 4px;
+        }
+        .order-section p {
+            color: #ccc;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        .order-phones {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .order-phones a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #fdf2e9;
+            text-decoration: none;
+            background: rgba(255,255,255,0.06);
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .order-phones a:hover {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            transform: scale(1.03);
+        }
+        .order-phones a i {
+            color: #f39c12;
+        }
+        .btn-order {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            padding: 14px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(37, 211, 102, 0.3);
+        }
+        .btn-order:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 35px rgba(37, 211, 102, 0.4);
+        }
+        .btn-order i {
+            font-size: 1.3rem;
+        }
+        .btn-order-wa2 {
+            background: #128C7E;
+        }
+        .pdf-section {
+            background: rgba(26, 15, 15, 0.85);
+            padding: 20px 16px;
+            border-radius: 14px;
+            margin: 20px 12px;
+            border: 2px solid #e74c3c;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        .pdf-section h3 {
+            color: #f39c12;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .pdf-section p {
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-bottom: 14px;
+        }
+        .pdf-section .pdf-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .pdf-section .pdf-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .pdf-section .pdf-btn:hover {
+            transform: scale(1.05);
+        }
+        .pdf-section .pdf-btn-ver {
+            background: #e74c3c;
+            color: white;
+        }
+        .pdf-section .pdf-btn-descargar {
+            background: #f39c12;
+            color: #0a0505;
+        }
+        footer {
+            text-align: center;
+            padding: 16px;
+            background: rgba(10, 5, 5, 0.95);
+            color: #666;
+            font-size: 0.75rem;
+            border-top: 1px solid rgba(255,255,255,0.04);
+        }
+        footer a {
+            color: #e74c3c;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        footer a:hover {
+            color: #f39c12;
+        }
+        .footer-slogan {
+            font-style: italic;
+            color: #888;
+            font-size: 0.7rem;
+            margin-top: 4px;
+        }
+        @media (max-width: 600px) {
+            .night-banner { flex-direction: column; text-align: center; }
+            .night-banner .night-info { justify-content: center; }
+            .menu-grid { grid-template-columns: 1fr; }
+            .btn-order { width: 100%; justify-content: center; font-size: 0.9rem; padding: 12px 20px; }
+            .section-title { font-size: 1.4rem; }
+            .delivery-zones .zones-grid { grid-template-columns: repeat(2, 1fr); }
+            .order-phones { flex-direction: column; align-items: center; }
+            .order-phones a { width: 90%; justify-content: center; }
+            .presentation p { font-size: 0.85rem; }
+            .payments-grid { flex-direction: column; align-items: center; }
+            .payment-btn { width: 100%; }
+            .pdf-section .pdf-buttons { flex-direction: column; align-items: center; }
+            .pdf-section .pdf-btn { width: 100%; justify-content: center; }
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="fire-bg"></div>
+<div class="fire-particle"></div>
+<div class="fire-particle"></div>
+<div class="fire-particle"></div>
+<div class="fire-particle"></div>
+<div class="fire-particle"></div>
+
+<header>
+    <div class="header-content">
+        <div class="logo-container">
+            <div class="logo-name">🔥 La Parrilla del Barrio</div>
+            <div class="logo-sub">🍖 DE LA PARRILLA DEL BARRIO</div>
+            <div class="logo-tagline">🌙 ANTOJITOS Y MÁS...</div>
+        </div>
+        <div class="header-actions">
+            <a href="tel:9902318995" class="header-phone">
+                <i class="fas fa-phone"></i>
+                <span class="phone-text">990 231 8995</span>
+                <span class="phone-mobile">📞</span>
+            </a>
+            <a href="tel:9999901264" class="header-phone">
+                <i class="fas fa-phone"></i>
+                <span class="phone-text">999 990 1264</span>
+                <span class="phone-mobile">📞</span>
+            </a>
+            <a href="https://wa.me/529902318995" class="header-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+                <span class="whatsapp-text">WhatsApp</span>
+                <span class="whatsapp-mobile">💬</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="night-banner">
+    <div class="night-icon">
+        <i class="fas fa-moon"></i>
+        <span>🌙 Abierto</span>
+    </div>
+    <div class="night-info">
+        <span class="hours-highlight"><i class="fas fa-clock"></i> 6PM - 1AM (Mar-Dom)</span>
+        <span class="morning-hours"><i class="fas fa-sun"></i> 7AM - 1PM (Lun-Vie)</span>
+        <span><i class="fas fa-map-marker-alt"></i> Kanasín</span>
+        <span><i class="fas fa-truck"></i> Domicilio $15</span>
+    </div>
+</div>
+
+<div class="share-section">
+    <div class="share-card">
+        <h3>📱 ESCANEA Y PIDE</h3>
+        <div class="qr-box">
+            <span class="qr-text">📲</span>
+            <div class="qr-url">Escanea con tu celular</div>
+        </div>
+        <p class="share-text">Apunta la cámara al QR en tu mesa</p>
+        <p class="share-text" style="font-size: 0.6rem; color: #666;">Menú digital al instante</p>
+    </div>
+    <div class="share-card">
+        <h3>📲 SIGUENOS EN REDES</h3>
+        <div style="font-size: 1rem; font-weight: 700; color: #f39c12; margin-bottom: 6px;">@LAPAR_RILLADELBARRIO</div>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/lapar_rilladelbarrio" class="ig" target="_blank" aria-label="Instagram de La Parrilla del Barrio">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://www.facebook.com/share/19Zqgk3Hnc/" class="fb" target="_blank" aria-label="Facebook de La Parrilla del Barrio">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="https://www.tiktok.com/@la.parrilla.del.b8" class="tt" target="_blank" aria-label="TikTok de La Parrilla del Barrio">
+                <i class="fab fa-tiktok"></i> TikTok
+            </a>
+            <a href="https://wa.me/529902318995" class="wa" target="_blank" aria-label="WhatsApp de La Parrilla del Barrio">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+        <p class="share-text">📞 990 231 8995 | 999 990 1264</p>
+    </div>
+</div>
+
+<div class="presentation">
+    <p>
+        <span class="highlight">🔥</span> Bienvenidos a <span class="highlight">La Parrilla del Barrio</span>! 
+        Aquí el sabor danza en cada platillo. <span class="highlight">🌮</span> Deléitate con tortas, tacos al pastor que susurran secretos ancestrales, 
+        arrachera jugosa y el abrazo cálido del choriqueso. Nuestras tablas de pocchuc son un poema al paladar, 
+        y las pizzas, estrellas en la noche. <span class="highlight">✨</span>
+        <br><br>
+        🌙 <span class="highlight">Nocturno:</span> Mar-Dom 6PM - 1AM (todos los platillos)<br>
+        🌅 <span class="highlight">Matutino:</span> Lun-Vie 7AM - 1PM (solo tortas y tacos)
+    </p>
+</div>
+
+<div class="container">
+    <h2 class="section-title">🌮 NUESTRO MENÚ</h2>
+
+    <!-- TACOS -->
+    <div class="category-title"><i class="fas fa-taco"></i> 🌮 Tacos (Unidad)</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🌮</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Pastor</h3><span class="price">$15</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥩</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Arrachera</h3><span class="price">$20</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🍖</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Chuleta con Queso</h3><span class="price">$18</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥩</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Poc-Chuc</h3><span class="price">$17</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥩</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Asado</h3><span class="price">$17</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🌭</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Chorizo con Queso</h3><span class="price">$18</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥩</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Taco de Castacán</h3><span class="price">$18</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TORTAS -->
+    <div class="category-title"><i class="fas fa-bread-slice"></i> 🥖 Tortas (Unidad)</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Pastor</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Arrachera</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Chuleta con Queso</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Poc-Chuc</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Asado</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Chorizo con Queso</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥪</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Torta de Castacán</h3><span class="price">$30</span></div>
+                <span class="morning-tag">🌅 Matutino</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLAS MIXTAS -->
+    <div class="category-title"><i class="fas fa-utensils"></i> 🍖 Tablas Mixtas</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🍖</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Tabla para 2 Personas</h3><span class="price">$240</span></div>
+                <div class="item-desc">Pastor, Poc-Chuc, Arrachera, Chuleta y Chorizo con Queso</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🍖</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Tabla Familiar</h3><span class="price">$380</span></div>
+                <div class="item-desc">Pastor, Poc-Chuc, Arrachera, Chuleta y Chorizo con Queso</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUESOS FUNDIDOS -->
+    <div class="category-title"><i class="fas fa-cheese"></i> 🧀 Quesos Fundidos</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🧀</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Queso Fundido con Chorizo</h3><span class="price">$75</span></div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🧀</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Queso Fundido con Chuleta</h3><span class="price">$80</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PIZZAS -->
+    <div class="category-title"><i class="fas fa-pizza-slice"></i> 🍕 Pizzas (Tamaño Grande)</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🍕</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Pizza de Pastor</h3><span class="price">$180</span></div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🍕</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Pizza de Arrachera</h3><span class="price">$210</span></div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🍕</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Pizza Mixta (2 Ingredientes)</h3><span class="price">$200</span></div>
+                <div class="item-desc">Elige dos carnes: Pastor, Arrachera, Chuleta, Poc-Chuc, Chorizo</div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🍕</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Pizza "La Supreme"</h3><span class="price">$260</span></div>
+                <div class="item-desc">Pastor, Arrachera, Chuleta, Poc-Chuc, Chorizo</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BEBIDAS -->
+    <div class="category-title"><i class="fas fa-glass-whiskey"></i> 🥤 Bebidas</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🥤</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Coca-Cola 2 Litros</h3><span class="price">$35</span></div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥤</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Coca-Cola 600 ml (no retornable)</h3><span class="price">$20</span></div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="item-img">🥤</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Agua Fresca 1 Litro</h3><span class="price">$25</span></div>
+                <div class="item-desc">Jamaica, Horchata o Cebada</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EXTRAS -->
+    <div class="category-title"><i class="fas fa-plus-circle"></i> 🧀 Extras</div>
+    <div class="menu-grid">
+        <div class="menu-item">
+            <div class="item-img">🧀</div>
+            <div class="item-body">
+                <div class="item-header"><h3>Queso Extra</h3><span class="price">$10</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SECCIÓN PDF -->
+<div class="pdf-section">
+    <h3>📄 Menú Completo en PDF</h3>
+    <p>Descarga o visualiza nuestro menú con todos los platillos, precios y promociones.</p>
+    <div class="pdf-buttons">
+        <a href="menu-parrilla.pdf" target="_blank" class="pdf-btn pdf-btn-ver">
+            <i class="fas fa-eye"></i> Ver PDF
+        </a>
+        <a href="menu-parrilla.pdf" download class="pdf-btn pdf-btn-descargar">
+            <i class="fas fa-download"></i> Descargar PDF
+        </a>
+    </div>
+</div>
+
+<!-- MÉTODOS DE PAGO -->
+<div class="payments-section">
+    <h3>💳 Formas de pago</h3>
+    <div class="payments-grid">
+        <a href="https://link.mercadopago.com.mx/laparrilladelbarrio" class="payment-btn btn-mercadolibre" target="_blank">
+            <i class="fas fa-store"></i> Mercado Pago
+        </a>
+        <a href="https://clip.mx/@laparrilladelbarriokan" class="payment-btn btn-clip" target="_blank">
+            <i class="fas fa-bolt"></i> Clip
+        </a>
+        <a href="https://wa.me/529902318995?text=Hola%20quiero%20pagar%20mi%20pedido%20de%20La%20Parrilla%20del%20Barrio" class="payment-btn" style="background: #25d366; border: 2px solid #128C7E;" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp 1
+        </a>
+        <a href="https://wa.me/529999901264?text=Hola%20quiero%20pagar%20mi%20pedido%20de%20La%20Parrilla%20del%20Barrio" class="payment-btn" style="background: #128C7E; border: 2px solid #25d366;" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp 2
+        </a>
+        <a href="tel:9902318995" class="payment-btn" style="background: #2d2d2d; border: 2px solid #f39c12;">
+            <i class="fas fa-money-bill-wave" style="color: #f39c12;"></i> Efectivo
+        </a>
+    </div>
+</div>
+
+<!-- ZONA DE PEDIDOS -->
+<div class="order-section">
+    <h2>📱 ¡Pide ahora!</h2>
+    <p>Haz tu pedido por WhatsApp y recíbelo en tu domicilio</p>
+    <div class="order-phones">
+        <a href="https://wa.me/529902318995?text=Hola%20quiero%20pedir%20de%20La%20Parrilla%20del%20Barrio" target="_blank">
+            <i class="fab fa-whatsapp" style="color: #25d366;"></i> 990 231 8995
+        </a>
+        <a href="https://wa.me/529999901264?text=Hola%20quiero%20pedir%20de%20La%20Parrilla%20del%20Barrio" target="_blank">
+            <i class="fab fa-whatsapp" style="color: #25d366;"></i> 999 990 1264
+        </a>
+    </div>
+    <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://wa.me/529902318995?text=Hola%20quiero%20pedir%20de%20La%20Parrilla%20del%20Barrio" class="btn-order" target="_blank">
+            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp 1
+        </a>
+        <a href="https://wa.me/529999901264?text=Hola%20quiero%20pedir%20de%20La%20Parrilla%20del%20Barrio" class="btn-order btn-order-wa2" target="_blank">
+            <i class="fab fa-whatsapp"></i> Pedir por WhatsApp 2
+        </a>
+    </div>
+    <div class="order-phones" style="margin-top: 10px;">
+        <a href="tel:9902318995">
+            <i class="fas fa-phone" style="color: #f39c12;"></i> 990 231 8995
+        </a>
+        <a href="tel:9999901264">
+            <i class="fas fa-phone" style="color: #f39c12;"></i> 999 990 1264
+        </a>
+    </div>
+</div>
+
+<!-- ZONAS DE ENVÍO -->
+<div class="delivery-zones">
+    <h3>🚚 Zonas de envío (Kanasín)</h3>
+    <div class="zones-grid">
+        <div class="zone-item"><strong>Cielo Alto</strong></div>
+        <div class="zone-item"><strong>Tazdzibichén</strong></div>
+        <div class="zone-item"><strong>Cerritos</strong></div>
+        <div class="zone-item"><strong>Mulchechén</strong></div>
+        <div class="zone-item"><strong>CROC</strong></div>
+        <div class="zone-item"><strong>San Pedro Nohpat</strong></div>
+        <div class="zone-item"><strong>Zona Centro</strong></div>
+    </div>
+    <div class="zone-note">
+        🚚 Costo de envío: <strong>$15</strong> (solo Kanasín)
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>🔥 La Parrilla del Barrio 🌵</p>
+    <div style="font-size: 0.7rem; color: #888; margin-top: 4px;">
+        🌙 6PM - 1AM (Mar-Dom) | 🌅 7AM - 1PM (Lun-Vie)
+    </div>
+    <div style="font-size: 0.7rem; color: #888;">
+        📦 Envíos a Kanasín | 💳 Mercado Pago / Clip / Efectivo
+    </div>
+    <div class="footer-slogan">
+        "El sabor danza en cada platillo" 🔥
+    </div>
+    <div style="font-size: 0.65rem; margin-top: 6px; color: #555;">
+        📞 <a href="tel:9902318995">990 231 8995</a> | 
+        <a href="tel:9999901264">999 990 1264</a> |
+        <a href="https://wa.me/529902318995" target="_blank">WhatsApp 1</a> | 
+        <a href="https://wa.me/529999901264" target="_blank">WhatsApp 2</a>
+    </div>
+    <div style="font-size: 0.6rem; margin-top: 4px; color: #444;">
+        <a href="https://www.instagram.com/lapar_rilladelbarrio" target="_blank">@lapar_rilladelbarrio</a>
+    </div>
+</footer>
+
+</body>
+</html>
